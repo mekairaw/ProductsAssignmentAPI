@@ -6,7 +6,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ProductsAssignmentAPI.Domain.Models;
+using ProductsAssignmentAPI.Domain.Resources;
 using ProductsAssignmentAPI.Domain.Services;
+using AutoMapper;
 
 namespace ProductsAssignmentAPI.Controllers
 {
@@ -16,17 +18,21 @@ namespace ProductsAssignmentAPI.Controllers
     {
         //private readonly ProductsAssignmentAPIContext _context;
         private readonly IProductTypeService _productTypeService;
+        private readonly IMapper _mapper;
 
-        public ProductTypesController(IProductTypeService productTypeService)
+        public ProductTypesController(IProductTypeService productTypeService, IMapper mapper)
         {
             _productTypeService = productTypeService;
+            _mapper = mapper;
         }
 
         // GET: api/ProductTypes
         [HttpGet]
-        public async Task<IEnumerable<ProductType>> GetAllAsync()
+        public async Task<IEnumerable<ProductTypeResource>> GetAllAsync()
         {
-            return await _productTypeService.ListProductTypesAsync();
+            var productTypes = await _productTypeService.ListProductTypesAsync();
+            var resources = _mapper.Map<IEnumerable<ProductType>, IEnumerable<ProductTypeResource>>(productTypes);
+            return resources;
         }
     }
 }

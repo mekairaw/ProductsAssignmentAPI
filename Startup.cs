@@ -17,6 +17,8 @@ using ProductsAssignmentAPI.Domain.Persistence.Contexts;
 using ProductsAssignmentAPI.Services;
 using ProductsAssignmentAPI.Domain.Services;
 using ProductsAssignmentAPI.Domain.Repositories;
+using AutoMapper;
+using ProductsAssignmentAPI.Mapping;
 
 namespace ProductsAssignmentAPI
 {
@@ -39,6 +41,8 @@ namespace ProductsAssignmentAPI
 
             services.AddScoped<IProductTypeRepository, ProductTypeRepository>();
             services.AddScoped<IProductTypeService, ProductTypeService>();
+
+            services.AddAutoMapper(typeof(ModelToResourceProfile));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
