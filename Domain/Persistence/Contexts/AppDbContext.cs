@@ -20,7 +20,7 @@ namespace ProductsAssignmentAPI.Domain.Persistence.Contexts
             modelBuilder.Entity<ProductType>().ToTable("ProductType");
             modelBuilder.Entity<ProductType>().HasKey(t => t.Id);
             modelBuilder.Entity<ProductType>().Property(t => t.Id).IsRequired().ValueGeneratedOnAdd();
-            modelBuilder.Entity<ProductType>().Property(t => t.Name).IsRequired();
+            modelBuilder.Entity<ProductType>().Property(t => t.Name).IsRequired().HasMaxLength(50);
             modelBuilder.Entity<ProductType>().HasMany(t => t.Products).WithOne(p => p.ProductType).HasForeignKey(p => p.ProductTypeId);
 
             modelBuilder.Entity<ProductType>().HasData(
@@ -34,8 +34,8 @@ namespace ProductsAssignmentAPI.Domain.Persistence.Contexts
             modelBuilder.Entity<Product>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
             modelBuilder.Entity<Product>().Property(p => p.Name).IsRequired().HasMaxLength(50);
             modelBuilder.Entity<Product>().Property(p => p.IsActive).IsRequired();
-            modelBuilder.Entity<Product>().Property(p => p.Notes).IsRequired();
-            modelBuilder.Entity<Product>().Property(p => p.Price).IsRequired();
+            modelBuilder.Entity<Product>().Property(p => p.Notes).IsRequired().HasColumnType("text");
+            modelBuilder.Entity<Product>().Property(p => p.Price).IsRequired().HasColumnType("decimal(18,2)");
         }
     }
 }

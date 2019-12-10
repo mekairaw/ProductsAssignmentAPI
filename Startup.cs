@@ -11,6 +11,12 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.EntityFrameworkCore;
+using ProductsAssignmentAPI.Domain.Models;
+using ProductsAssignmentAPI.Domain.Persistence.Repositories;
+using ProductsAssignmentAPI.Domain.Persistence.Contexts;
+using ProductsAssignmentAPI.Services;
+using ProductsAssignmentAPI.Domain.Services;
+using ProductsAssignmentAPI.Domain.Repositories;
 
 namespace ProductsAssignmentAPI
 {
@@ -28,8 +34,11 @@ namespace ProductsAssignmentAPI
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
-            //services.AddDbContext<ProductsAssignmentAPIContext>(options =>
-                    //options.UseSqlServer(Configuration.GetConnectionString("ProductsAssignmentAPIContext")));
+            services.AddDbContext<AppDbContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("ProductsAssignmentAPIContext")));
+
+            services.AddScoped<IProductTypeRepository, ProductTypeRepository>();
+            services.AddScoped<IProductTypeService, ProductTypeService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
