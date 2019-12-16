@@ -41,6 +41,8 @@ namespace ProductsAssignmentAPI
 
             services.AddScoped<IProductTypeRepository, ProductTypeRepository>();
             services.AddScoped<IProductTypeService, ProductTypeService>();
+            services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<IProductService, ProductService>();
 
             services.AddAutoMapper(typeof(ModelToResourceProfile));
         }
