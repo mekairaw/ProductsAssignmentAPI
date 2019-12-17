@@ -2,18 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using AutoMapper;
 using ProductsAssignmentAPI.Domain.Models;
 using ProductsAssignmentAPI.Domain.Resources;
+using AutoMapper;
 
 namespace ProductsAssignmentAPI.Mapping
 {
-    public class ModelToResourceProfile: Profile
+    public class ResourceToModelProfile: Profile
     {
-        public ModelToResourceProfile()
+        public ResourceToModelProfile()
         {
-            CreateMap<ProductType, ProductTypeResource>();
-            CreateMap<Product, ProductResource>();
+            CreateMap<NewProductResource, Product>();
         }
     }
 }

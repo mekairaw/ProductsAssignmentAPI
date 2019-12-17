@@ -34,7 +34,7 @@ namespace ProductsAssignmentAPI.Domain.Persistence.Contexts
             modelBuilder.Entity<Product>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
             modelBuilder.Entity<Product>().Property(p => p.Name).IsRequired().HasMaxLength(50);
             modelBuilder.Entity<Product>().Property(p => p.IsActive).IsRequired();
-            modelBuilder.Entity<Product>().Property(p => p.Notes).IsRequired().HasColumnType("text");
+            modelBuilder.Entity<Product>().Property(p => p.Notes).HasColumnType("text");
             modelBuilder.Entity<Product>().Property(p => p.Price).IsRequired().HasColumnType("decimal(18,2)");
         }
     }

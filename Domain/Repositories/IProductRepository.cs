@@ -9,5 +9,6 @@ namespace ProductsAssignmentAPI.Domain.Repositories
     public interface IProductRepository
     {
         Task<IEnumerable<Product>> ListProductsAsync();
+        Task AddProductAsync(Product product);
     }
 }
