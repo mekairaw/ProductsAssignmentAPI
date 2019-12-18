@@ -51,5 +51,40 @@ namespace ProductsAssignmentAPI.Controllers
 
             return Ok(result);
         }
+        [HttpPut("{id}")]
+        public async Task<IActionResult> EditProduct(int id, NewProductResource editProduct)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState.GetErrorMessages());
+            }
+            var product = _mapper.Map<NewProductResource, Product>(editProduct);
+            var result = await _productService.UpdateAsync(id, product);
+
+            if (!result.Success)
+            {
+                return BadRequest(result.Message);
+            }
+
+            return Ok(result);
+        }
+        [HttpGet("{id}")]
+        public async Task<SpecificProductResource> GetProductAsync(int id)
+        {
+            var product = await _productService.GetProductAsync(id);
+            var result = _mapper.Map<Product, SpecificProductResource>(product);
+            return result;
+        }
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteProductAsync(int id)
+        {
+            var result = await _productService.DeleteProductAsync(id);
+            if (!result.Success)
+            {
+                return BadRequest(result.Message);
+            }
+
+            return Ok(result);
+        }
     }
 }

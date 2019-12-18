@@ -10,5 +10,8 @@ namespace ProductsAssignmentAPI.Domain.Repositories
     {
         Task<IEnumerable<Product>> ListProductsAsync();
         Task AddProductAsync(Product product);
+        Task<Product> FindById(int id);
+        void Update(Product product);
+        void Remove(Product product);
     }
 }

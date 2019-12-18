@@ -11,5 +11,8 @@ namespace ProductsAssignmentAPI.Domain.Services
     {
         Task<IEnumerable<Product>> ListProductsAsync();
         Task<SaveProductResponse> SaveAsync(Product product);
+        Task<SaveProductResponse> UpdateAsync(int id, Product product);
+        Task<Product> GetProductAsync(int id);
+        Task<DeleteProductResponse> DeleteProductAsync(int id);
     }
 }

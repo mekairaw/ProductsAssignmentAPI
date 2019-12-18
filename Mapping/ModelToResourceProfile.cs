@@ -13,7 +13,10 @@ namespace ProductsAssignmentAPI.Mapping
         public ModelToResourceProfile()
         {
             CreateMap<ProductType, ProductTypeResource>();
-            CreateMap<Product, ProductResource>();
+            CreateMap<Product, ProductResource>()
+                .ForMember(dest => dest.ProductTypeName,
+                    member => member.MapFrom(opt => opt.ProductType.Name));
+            CreateMap<Product, SpecificProductResource>();
         }
     }
 }
