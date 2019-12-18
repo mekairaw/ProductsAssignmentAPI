@@ -17,6 +17,9 @@ using ProductsAssignmentAPI.Domain.Persistence.Contexts;
 using ProductsAssignmentAPI.Services;
 using ProductsAssignmentAPI.Domain.Services;
 using ProductsAssignmentAPI.Domain.Repositories;
+using AutoMapper;
+using ProductsAssignmentAPI.Mapping;
+using FluentValidation.AspNetCore;
 
 namespace ProductsAssignmentAPI
 {
@@ -32,13 +35,20 @@ namespace ProductsAssignmentAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc()
+                .AddFluentValidation(config =>  config.RegisterValidatorsFromAssemblyContaining<Startup>())
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.AddDbContext<AppDbContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("ProductsAssignmentAPIContext")));
 
             services.AddScoped<IProductTypeRepository, ProductTypeRepository>();
             services.AddScoped<IProductTypeService, ProductTypeService>();
+            services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+            services.AddAutoMapper(typeof(ModelToResourceProfile));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
