@@ -1,5 +1,4 @@
 # ProductsAssignment API
-----
 This API is made for my Products assignment app. It will later on connect with [this repo](https://github.com/mekairaw/ProductsAssignmentFrontEnd).
 ## Stack
 - .Net Core 3.0
