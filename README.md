@@ -17,5 +17,8 @@ This API is made for my Products assignment app. It will later on connect with [
 - Finally proceed to run the solution.
 
 ## Unit and Integration Testing
-There are two more projects on this Solution for Unit and Integration testing respectively. To execute them, you must build the solution first, then go to the project, for example "ProductsAssignmentAPI.UnitTesting" and right-click, then select run tests.
-The same goes for Integration Testing. Both tests should be successful.
+There are two more projects on this Solution for Unit and Integration testing respectively. 
+- To execute them, you must build the solution first.
+- Then go to the project, for example "ProductsAssignmentAPI.UnitTesting" and right-click. 
+- Then select run tests.
+- The same goes for Integration Testing. Both tests should be successful.
