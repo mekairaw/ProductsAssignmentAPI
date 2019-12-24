@@ -46,7 +46,7 @@ namespace ProductsAssignmentAPI.Controllers
 
             if (!result.Success)
             {
-                return BadRequest(result.Message);
+                return BadRequest(result);
             }
 
             return Ok(result);
@@ -63,7 +63,7 @@ namespace ProductsAssignmentAPI.Controllers
 
             if (!result.Success)
             {
-                return BadRequest(result.Message);
+                return BadRequest(result);
             }
 
             return Ok(result);
@@ -81,7 +81,7 @@ namespace ProductsAssignmentAPI.Controllers
             var result = await _productService.DeleteProductAsync(id);
             if (!result.Success)
             {
-                return BadRequest(result.Message);
+                return BadRequest(result);
             }
 
             return Ok(result);
