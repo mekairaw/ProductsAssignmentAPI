@@ -35,7 +35,7 @@ namespace ProductsAssignmentAPI.Services
             }
             catch(Exception ex)
             {
-                return new SaveProductResponse($"Ocurrió un error al procesar la solicitud: {ex.Message}");
+                return new SaveProductResponse($"An error has ocurred while processing the request: {ex.Message}");
             }
         }
 
@@ -45,7 +45,7 @@ namespace ProductsAssignmentAPI.Services
 
             if(existingProduct == null)
             {
-                return new SaveProductResponse("Producto no encontrado");
+                return new SaveProductResponse("Product not found");
             }
 
             existingProduct.Name = product.Name;
@@ -63,7 +63,7 @@ namespace ProductsAssignmentAPI.Services
             }
             catch(Exception ex)
             {
-                return new SaveProductResponse($"Ha ocurrido un error al actualizar el producto: {ex.Message}");
+                return new SaveProductResponse($"An error has ocurred while updating the product: {ex.Message}");
             }
         }
         public async Task<Product> GetProductAsync(int id)
@@ -77,7 +77,7 @@ namespace ProductsAssignmentAPI.Services
             var existingProduct = await _productRepository.FindById(id);
             if(existingProduct == null)
             {
-                return new DeleteProductResponse("Producto no encontrado");
+                return new DeleteProductResponse("Product not found");
             }
             try
             {
@@ -88,7 +88,7 @@ namespace ProductsAssignmentAPI.Services
             }
             catch(Exception ex)
             {
-                return new DeleteProductResponse($"Un error ocurrió al momento de borrar el producto: {ex.Message}");
+                return new DeleteProductResponse($"An error has ocurred while deleting the product: {ex.Message}");
             }
         }
     }
